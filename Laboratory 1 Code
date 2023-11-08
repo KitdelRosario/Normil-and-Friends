@@ -1,0 +1,39 @@
+class Polygons:
+
+    def __init__(self, name, num_sides, area):
+        self.name = name
+        self.num_sides = num_sides
+        self.area = area
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_num_sides(self, num_sides):
+        self.num_sides = num_sides
+
+    def set_area(self, area):
+        self.area = area
+
+    def get_name(self):
+        return self.name
+
+    def get_num_sides(self):
+        return self.num_sides
+
+    def get_area(self):
+        return self.area
+
+
+polygon = Polygons("Triangle", 3, 6.0)
+
+print("Name:", polygon.get_name())
+print("Number of Sides:", polygon.get_num_sides())
+print("Area:", polygon.get_area())
+
+polygon.set_name("Square")
+polygon.set_num_sides(4)
+polygon.set_area(16.0)
+
+print("Updated Name:", polygon.get_name())
+print("Updated Number of Sides:", polygon.get_num_sides())
+print("Updated Area:", polygon.get_area())
