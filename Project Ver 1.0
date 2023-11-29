@@ -1,0 +1,33 @@
+from tkinter import *
+
+def main_scrn():
+
+    global main
+    main = Tk()
+    main.geometry("600x600+650+275")
+    main.title("Student Portal")
+    main.configure(bg="#1B262C")
+
+    lbl = Label(main,text = 'Welcome to Student Portal', fg = "#994D1C", bg = "#1B262C",  font = ("Helvetica", 25, "bold"))
+    lbl.place(x = 95, y = 20)
+
+    btn = Button(text="Login Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold"))
+    btn.place(x=175, y=90)
+
+    btn = Button(text="Create Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold"))
+    btn.place(x=175, y=190)
+
+    btn = Button(text="Search Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold"))
+    btn.place(x=175, y=290)
+
+    btn = Button(text="Update Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold"))
+    btn.place(x=175, y=390)
+
+    btn = Button(text="Delete Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold"))
+    btn.place(x=175, y=490)
+
+    main.mainloop()
+
+
+main_scrn()
+
