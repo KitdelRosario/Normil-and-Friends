@@ -1,0 +1,52 @@
+from tkinter import *
+
+def log_back():
+    screen2.destroy()
+    screen.deiconify()
+
+def cre_back():
+    screen2.destroy()
+    screen.deiconify()
+
+def ser_back():
+    screen2.destroy()
+    screen.deiconify()
+
+def upd_back():
+    screen2.destroy()
+    screen.deiconify()
+
+def del_back():
+    screen2.destroy()
+    screen.deiconify()
+
+
+def main_scrn():
+
+    global main
+    main = Tk()
+    main.geometry("600x500+650+275")
+    main.title("Student Portal")
+    main.configure(bg="#1B262C")
+
+    Label(text="", bg="#1B262C").pack()
+    Label(text="Welcome to Student Portal", fg="#994D1C", bg="#1B262C", height=1, width=50, font=("Helvetica", 20, "bold")).pack()
+    Label(text="", bg="#1B262C").pack()
+
+    Button(text="Login Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold")).pack()
+    Label(text="", bg="#1B262C").pack()
+
+    Button(text="Create Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold")).pack()
+    Label(text="", bg="#1B262C").pack()
+
+    Button(text="Update Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold")).pack()
+    Label(text="", bg="#1B262C").pack()
+
+    Button(text="Delete Account", fg="#E48F45", bg="#0F4C75", height=2, width=20, bd=5, font=("Helvetica", 15, "bold")).pack()
+
+
+    main.resizable(False, False)
+    main.mainloop()
+
+
+main_scrn()
