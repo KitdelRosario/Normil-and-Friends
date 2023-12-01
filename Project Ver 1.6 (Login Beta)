@@ -1,4 +1,15 @@
 from tkinter import *
+from tkinter import messagebox
+
+def Check(): # Para sa Login (Required -----> studentnum = test, password = test)     Prototype palang ! ! !
+    
+    if StudentNum.get() == "" or password.get() == "":
+        messagebox.showerror("Error", "All fields are required", parent=log)
+    elif StudentNum.get() != "test" or password.get() != "test":
+        messagebox.showerror("Error", "Invalid Username or Password", parent=log)
+    else:
+        messagebox.showinfo("Welcome", f"Welcome {StudentNum.get()}")
+
 
 def main_scrn(): #Main Screen
 
@@ -28,10 +39,9 @@ def main_scrn(): #Main Screen
     main.resizable(False, False)
     main.mainloop()
 
-
 def log_scrn(): #Login Screen
 
-    global log
+    global log, StudentNum, password
     log = Toplevel(main)
     log.geometry("600x500+650+275")
     log.title("Login Account")
@@ -43,16 +53,18 @@ def log_scrn(): #Login Screen
     lbl = Label(log, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=220, y=140)
 
-    txtfld = Entry(log, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
+    StudentNum = StringVar()
+    txtfld = Entry(log, textvariable=StudentNum, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
     txtfld.place(x=195, y=190)
 
     lbl = Label(log, text="Enter password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=240, y=270)
 
-    txtfld = Entry(log, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16))
-    txtfld.place(x=197, y=320)
+    password = StringVar()
+    txtfld_password = Entry(log, textvariable=password, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
+    txtfld_password.place(x=197, y=320)
 
-    btn = Button(log, text="       Log In       ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
+    btn = Button(log, text="       Log In       ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command = Check)
     btn.place(x=130, y=400)
 
     btn = Button(log, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
@@ -61,5 +73,6 @@ def log_scrn(): #Login Screen
 
     log.resizable(False, False)
     main.withdraw()
+
 
 main_scrn()
