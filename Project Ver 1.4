@@ -1,0 +1,65 @@
+from tkinter import *
+
+def main_scrn(): #Main Screen
+
+    global main
+    main = Tk()
+    main.geometry("600x500+650+275")
+    main.title("Student Portal")
+    main.configure(bg="#E1AA74")
+
+
+    lbl = Label(text="Welcome to Student Portal", fg="#618264", bg="#E1AA74", height=1, width=25, font=("Times", 30, "bold"))
+    lbl.place(x = 1, y = 20)
+
+    btn = Button(text="Login Account", fg="#FFA33C", bg="#618264", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = log_scrn)
+    btn.place(x=180, y=100)
+
+    btn = Button(text="Create Account", fg="#FFA33C", bg="#618264", height=2, width=20, bd=5, font=("Times", 15, "bold"))
+    btn.place(x=180, y=200)
+
+    btn = Button(text="Update Account", fg="#FFA33C", bg="#618264", height=2, width=20, bd=5, font=("Times", 15, "bold"))
+    btn.place(x=180, y=300)
+
+    btn = Button(text="Delete Account", fg="#FFA33C", bg="#618264", height=2, width=20, bd=5, font=("Times", 15, "bold"))
+    btn.place(x=180, y=400)
+
+
+    main.resizable(False, False)
+    main.mainloop()
+
+
+def log_scrn(): #Login Screen
+
+    global log
+    log = Toplevel(main)
+    log.geometry("600x500+650+275")
+    log.title("Login Account")
+    log.configure(bg="#E1AA74")
+
+    lbl = Label(log, text="Login Account", fg="#618264", bg="#E1AA74", height=1, width=12, font=("Times", 40, "bold"))
+    lbl.place(x=116, y=20)
+
+    lbl = Label(log, text="Enter Student Number:", fg="#618264", bg="#E1AA74", font=("Times", 13, "bold"))
+    lbl.place(x=220, y=140)
+
+    txtfld = Entry(log, fg="#E48F45", bg="White", bd=3.5, font=("Helvetica", 15))
+    txtfld.place(x=195, y=190)
+
+    lbl = Label(log, text="Enter password:", fg="#618264", bg="#E1AA74", font=("Times", 13, "bold"))
+    lbl.place(x=240, y=270)
+
+    txtfld = Entry(log, fg="#E48F45", bg="White", bd=3.5, font=("Times", 16))
+    txtfld.place(x=197, y=320)
+
+    btn = Button(log, text="       Log In       ", fg="#FFA33C", bg="#618264", bd=3.5, font=("Times", 13, "bold"))
+    btn.place(x=130, y=400)
+
+    btn = Button(log, text="         Back          ", fg="#FFA33C", bg="#618264", bd=3.5, font=("Times", 13, "bold"))
+    btn.place(x=330, y=400)
+
+
+    log.resizable(False, False)
+    main.withdraw()
+
+main_scrn()
