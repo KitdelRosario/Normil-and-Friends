@@ -1,0 +1,180 @@
+from tkinter import *
+from tkinter import messagebox
+
+def Check(): # Para sa Login (Required -----> studentnum = test, password = test)     Prototype palang ! ! !
+
+    if StudentNum.get() == "" or password.get() == "":
+        messagebox.showerror("Error", "All fields are required", parent=log)
+    elif StudentNum.get() != "test" or password.get() != "test":
+        messagebox.showerror("Error", "Invalid Username or Password", parent=log)
+    else:
+        messagebox.showinfo("Welcome", f"Welcome {StudentNum.get()}")
+
+def log_back():
+
+    log.destroy()
+    main.deiconify()
+
+def cre_back():
+
+    cre.destroy()
+    main.deiconify()
+
+def upd_back():
+
+    upd.destroy()
+    main.deiconify()
+
+def main_scrn(): # Main Screen
+
+    global main
+    main = Tk()
+    main.geometry("600x500+650+275")
+    main.title("Student Portal")
+    main.configure(bg="#DED0B6")
+
+
+    lbl = Label(text="Welcome to Student Portal", fg="#454545", bg="#DED0B6", height=1, width=25, font=("Times", 30, "bold"))
+    lbl.place(x = 1, y = 20)
+
+    btn = Button(text="Login Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = log_scrn) # calling the def_log and will be directed at login screen
+    btn.place(x=180, y=100)
+
+    btn = Button(text="Create Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = cre_scrn) # calling the def_cre and will be directed at create screen
+    btn.place(x=180, y=200)
+
+    btn = Button(text="Update Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = upd_scrn) # calling the def_cre and will be directed at updates screen
+    btn.place(x=180, y=300)
+
+    btn = Button(text="Delete Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"))
+    btn.place(x=180, y=400)
+
+
+    main.resizable(False, False)
+    main.mainloop()
+
+def log_scrn(): # Login Screen
+
+    global log, StudentNum, password
+    log = Toplevel(main)
+    log.geometry("600x500+650+275")
+    log.title("Login Account")
+    log.configure(bg="#DED0B6")
+
+    lbl = Label(log, text="Login Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
+    lbl.place(x=116, y=20)
+
+    lbl = Label(log, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=220, y=140)
+
+    StudentNum = StringVar()
+    txtfld = Entry(log, textvariable=StudentNum, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
+    txtfld.place(x=195, y=190)
+
+    lbl = Label(log, text="Enter password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=240, y=270)
+
+    password = StringVar()
+    txtfld_password = Entry(log, textvariable=password, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
+    txtfld_password.place(x=197, y=320)
+
+    btn = Button(log, text="       Log In       ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command = Check) # calling the def_Check
+    btn.place(x=130, y=400)
+
+    btn = Button(log, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), comman = log_back) # calling  log_back and returning on main screen
+    btn.place(x=330, y=400)
+
+
+    log.resizable(False, False)
+    main.withdraw()
+
+def cre_scrn(): # Login Screen
+
+    global cre
+    cre = Toplevel(main)
+    cre.geometry("900x700+490+200")
+    cre.title("Create Account")
+    cre.configure(bg="#DED0B6")
+
+    lbl = Label(cre, text="Create an Account", fg="#454545", bg="#DED0B6", height=1, width=15, font=("Times", 50, "bold"))
+    lbl.place(x=160, y=20)
+
+    lbl = Label(cre, text="Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=160)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=80, y=200)
+
+    lbl = Label(cre, text="Create Password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=280)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=80, y=320)
+
+    lbl = Label(cre, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=400)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=80, y=440)
+
+    lbl = Label(cre, text="E-Mail:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=160)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=500, y=200)
+
+    lbl = Label(cre, text="Age:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=280)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=500, y=320)
+
+    lbl = Label(cre, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=400)
+
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=500, y=440)
+
+    btn = Button(cre, text="            Create            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
+    btn.place(x=260, y=540)
+
+    btn = Button(cre, text="            Back            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command = cre_back) # calling  cre_back and returning on main screen
+    btn.place(x=470, y=540)
+
+    cre.resizable(False, False)
+    main.withdraw()
+
+def upd_scrn(): # Login Screen
+
+    global upd
+    upd = Toplevel(main)
+    upd.geometry("600x500+650+275")
+    upd.title("Login Account")
+    upd.configure(bg="#DED0B6")
+
+    lbl = Label(upd, text="Update Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
+    lbl.place(x=116, y=20)
+
+    lbl = Label(upd, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=220, y=140)
+
+    txtfld = Entry(upd, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
+    txtfld.place(x=195, y=190)
+
+    lbl = Label(upd, text="Enter password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=240, y=270)
+
+    txtfld_password = Entry(upd, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
+    txtfld_password.place(x=197, y=320)
+
+    btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold")) # calling the def_Check
+    btn.place(x=130, y=400)
+
+    btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), comman = upd_back) # calling  upd_back and returning on main screen
+    btn.place(x=330, y=400)
+
+
+    upd.resizable(False, False)
+    main.withdraw()
+
+main_scrn()
