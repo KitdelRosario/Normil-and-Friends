@@ -108,7 +108,7 @@ def cre_scrn(): # Login Screen
     lbl = Label(cre, text="Create Password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=80, y=280)
 
-    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20), show="*")
     txtfld.place(x=80, y=320)
 
     lbl = Label(cre, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
