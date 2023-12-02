@@ -43,7 +43,7 @@ def main_scrn(): # Main Screen
     btn = Button(text="Create Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = cre_scrn) # calling the def_cre and will be directed at create screen
     btn.place(x=180, y=200)
 
-    btn = Button(text="Update Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = upd_scrn) # calling the def_cre and will be directed at updates screen
+    btn = Button(text="Update Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = upd_scrn) # calling the def_upd and will be directed at updates screen
     btn.place(x=180, y=300)
 
     btn = Button(text="Delete Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"))
@@ -88,7 +88,7 @@ def log_scrn(): # Login Screen
     log.resizable(False, False)
     main.withdraw()
 
-def cre_scrn(): # Login Screen
+def cre_scrn(): # Create Screen
 
     global cre
     cre = Toplevel(main)
@@ -144,7 +144,7 @@ def cre_scrn(): # Login Screen
     cre.resizable(False, False)
     main.withdraw()
 
-def upd_scrn(): # Login Screen
+def upd_scrn(): # Update Screen
 
     global upd
     upd = Toplevel(main)
