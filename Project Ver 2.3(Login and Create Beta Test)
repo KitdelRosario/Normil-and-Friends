@@ -1,5 +1,11 @@
 from tkinter import *
-import os
+
+user=[]
+passwrd = []
+email = []
+age = []
+test1 = []
+test2 = []
 
 def reg_user():
 
@@ -12,43 +18,29 @@ def reg_user():
     Test1_info = Test1.get()
     Test2_info = Test2.get()
 
-    file = open(StdNum_info, "w")
-    file.write(StdNum_info + "\n")
-    file.write(password_info + "\n")
-    file.write(Email_info + "\n")
-    file.write(Age_info + "\n")
-    file.write(Test1_info + "\n")
-    file.write(Test2_info)
-    file.close()
+    user.append(StdNum_info)
+    passwrd.append(password_info)
+    email.append(Email_info)
+    age.append(Age_info)
+    test1.append(Test1_info)
+    test2.append(Test2_info)
 
-    StdNum_entry.delete(0, END)
-    password_entry.delete(0, END)
-    Email_entry.delete(0, END)
-    Age_entry.delete(0, END)
-    Test1_entry.delete(0, END)
-    Test2_entry.delete(0, END)
 
     lbl = Label(cre, text="Registration Complete", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=370, y=600)
 
 def login_verify():
 
+    user_pass = list(zip(user, passwrd))
     StdNum1 = StdNum_verify.get()
     password1 = password_verify.get()
-
-    StdNum_entry1.delete(0, END)
-    password_entry1.delete(0, END)
-
-    list_of_files = os.listdir()
-    if StdNum1 in list_of_files:
-        file1 = open(StdNum1, "r")
-        verify = file1.read().splitlines()
-        if password1 in verify:
+    try:
+        passwd_index = user_pass.index((StdNum1, password1))
+        if password1 == passwrd[passwd_index]:
             logsuc()
         else:
             pnr()
-
-    else:
+    except ValueError:
         unf()
 
 def logsuc():
@@ -59,7 +51,6 @@ def logsuc():
     Label(logsuc, text="Login Sucess").pack()
     Button(logsuc, text="OK", command=deletelogsuc).pack()
 
-
 def pnr():
     global pnr
     pnr = Toplevel(main)
@@ -67,7 +58,6 @@ def pnr():
     pnr.geometry("300x100+810+500")
     Label(pnr, text="Wrong Student Number or Password").pack()
     Button(pnr, text="OK", command=deletepnr).pack()
-
 
 def unf():
     global unf
@@ -275,7 +265,7 @@ def delt_scrn(): # Delete Screen
     delt.title("Login Account")
     delt.configure(bg="#DED0B6")
 
-    lbl = Label(delt, text="Update Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
+    lbl = Label(delt, text="Delete Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
     lbl.place(x=116, y=20)
 
     lbl = Label(delt, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
