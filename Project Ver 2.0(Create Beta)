@@ -14,14 +14,26 @@ def reg_user():
 
     StdNum_info = StdNum.get()
     password_info = password.get()
+    Email_info =  Email.get()
+    Age_info = Age.get()
+    Test1_info = Test1.get()
+    Test2_info = Test2.get()
 
     file = open(StdNum_info + ".txt", "w")
     file.write(StdNum_info + "\n")
-    file.write(password_info)
+    file.write(password_info + "\n")
+    file.write(Email_info + "\n")
+    file.write(Age_info + "\n")
+    file.write(Test1_info + "\n")
+    file.write(Test2_info)
     file.close()
 
     StdNum_entry.delete(0, END)
     password_entry.delete(0, END)
+    Email_entry.delete(0, END)
+    Age_entry.delete(0, END)
+    Test1_entry.delete(0, END)
+    Test2_entry.delete(0, END)
 
 def log_back():
 
@@ -36,6 +48,11 @@ def cre_back():
 def upd_back():
 
     upd.destroy()
+    main.deiconify()
+
+def delt_back():
+
+    delt.destroy()
     main.deiconify()
 
 def main_scrn(): # Main Screen
@@ -59,7 +76,7 @@ def main_scrn(): # Main Screen
     btn = Button(text="Update Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = upd_scrn) # calling the def_cre and will be directed at updates screen
     btn.place(x=180, y=300)
 
-    btn = Button(text="Delete Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"))
+    btn = Button(text="Delete Account", fg="#F4BF96", bg="#454545", height=2, width=20, bd=5, font=("Times", 15, "bold"), command = delt_scrn) # calling the def_del and will be directed at delete screen
     btn.place(x=180, y=400)
 
 
@@ -101,7 +118,7 @@ def log_scrn(): # Login Screen
     log.resizable(False, False)
     main.withdraw()
 
-def cre_scrn(): # Login Screen
+def cre_scrn(): # Create Screen
 
     global cre
     cre = Toplevel(main)
@@ -109,12 +126,13 @@ def cre_scrn(): # Login Screen
     cre.title("Create Account")
     cre.configure(bg="#DED0B6")
 
-    global StdNum
-    global password
-    global StdNum_entry
-    global password_entry
+    global StdNum, password, Email, Age, Test1, Test2, StdNum_entry, password_entry, Email_entry, Age_entry, Test1_entry, Test2_entry
     StdNum = StringVar()
     password = StringVar()
+    Email = StringVar()
+    Age = StringVar()
+    Test1 = StringVar()
+    Test2 = StringVar()
 
     lbl = Label(cre, text="Create an Account", fg="#454545", bg="#DED0B6", height=1, width=15, font=("Times", 50, "bold"))
     lbl.place(x=160, y=20)
@@ -134,26 +152,26 @@ def cre_scrn(): # Login Screen
     lbl = Label(cre, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=80, y=400)
 
-    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
-    txtfld.place(x=80, y=440)
+    Test1_entry = Entry(cre, textvariable=Test1, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    Test1_entry.place(x=80, y=440)
 
     lbl = Label(cre, text="E-Mail:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=500, y=160)
 
-    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
-    txtfld.place(x=500, y=200)
+    Email_entry = Entry(cre, textvariable=Email, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    Email_entry.place(x=500, y=200)
 
     lbl = Label(cre, text="Age:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=500, y=280)
 
-    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
-    txtfld.place(x=500, y=320)
+    Age_entry = Entry(cre, textvariable=Age, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    Age_entry.place(x=500, y=320)
 
     lbl = Label(cre, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=500, y=400)
 
-    txtfld = Entry(cre, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
-    txtfld.place(x=500, y=440)
+    Test2_entry = Entry(cre, textvariable=Test2, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    Test2_entry.place(x=500, y=440)
 
     btn = Button(cre, text="            Create            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command = reg_user)
     btn.place(x=260, y=540)
@@ -164,7 +182,7 @@ def cre_scrn(): # Login Screen
     cre.resizable(False, False)
     main.withdraw()
 
-def upd_scrn(): # Login Screen
+def upd_scrn():  # Update Screen
 
     global upd
     upd = Toplevel(main)
@@ -187,14 +205,46 @@ def upd_scrn(): # Login Screen
     txtfld_password = Entry(upd, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
     txtfld_password.place(x=197, y=320)
 
-    btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold")) # calling the def_Check
+    btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))  # calling the def_Check
     btn.place(x=130, y=400)
 
-    btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), comman = upd_back) # calling  upd_back and returning on main screen
+    btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command = upd_back)  # calling  upd_back and returning on main screen
     btn.place(x=330, y=400)
 
-
     upd.resizable(False, False)
+    main.withdraw()
+
+def delt_scrn(): # Delete Screen
+
+    global delt
+    delt = Toplevel(main)
+    delt.geometry("600x500+650+275")
+    delt.title("Login Account")
+    delt.configure(bg="#DED0B6")
+
+    lbl = Label(delt, text="Update Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
+    lbl.place(x=116, y=20)
+
+    lbl = Label(delt, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=220, y=140)
+
+    txtfld = Entry(delt, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
+    txtfld.place(x=195, y=190)
+
+    lbl = Label(delt, text="Enter password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=240, y=270)
+
+    txtfld_password = Entry(delt, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
+    txtfld_password.place(x=197, y=320)
+
+    btn = Button(delt, text="         Delete         ", fg="#F4BF96", bg="#454545", bd=3.5,
+                 font=("Times", 13, "bold"))  # calling the def_Check
+    btn.place(x=130, y=400)
+
+    btn = Button(delt, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command = delt_back)  # calling  delt_back and returning on main screen
+    btn.place(x=330, y=400)
+
+    delt.resizable(False, False)
     main.withdraw()
 
 main_scrn()
