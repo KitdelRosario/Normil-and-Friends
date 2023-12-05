@@ -1,25 +1,18 @@
 from tkinter import *
-from tkinter import messagebox
-
-def Check(): # Para sa Login (Required -----> studentnum = test, password = test)     Prototype palang ! ! !
-
-    if StudentNum.get() == "" or password.get() == "":
-        messagebox.showerror("Error", "All fields are required", parent=log)
-    elif StudentNum.get() != "test" or password.get() != "test":
-        messagebox.showerror("Error", "Invalid Username or Password", parent=log)
-    else:
-        messagebox.showinfo("Welcome", f"Welcome {StudentNum.get()}")
+import os
 
 def reg_user():
 
+    print("Loading...")
+
     StdNum_info = StdNum.get()
     password_info = password.get()
-    Email_info =  Email.get()
+    Email_info = Email.get()
     Age_info = Age.get()
     Test1_info = Test1.get()
     Test2_info = Test2.get()
 
-    file = open(StdNum_info + ".txt", "w")
+    file = open(StdNum_info, "w")
     file.write(StdNum_info + "\n")
     file.write(password_info + "\n")
     file.write(Email_info + "\n")
@@ -34,6 +27,55 @@ def reg_user():
     Age_entry.delete(0, END)
     Test1_entry.delete(0, END)
     Test2_entry.delete(0, END)
+
+    lbl = Label(cre, text="Registration Complete", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=370, y=600)
+
+def login_verify():
+
+    StdNum1 = StdNum_verify.get()
+    password1 = password_verify.get()
+
+    StdNum_entry1.delete(0, END)
+    password_entry1.delete(0, END)
+
+    list_of_files = os.listdir()
+    if StdNum1 in list_of_files:
+        file1 = open(StdNum1, "r")
+        verify = file1.read().splitlines()
+        if password1 in verify:
+            logsuc()
+        else:
+            pnr()
+
+    else:
+        unf()
+
+def logsuc():
+    global logsuc
+    logsuc = Toplevel(main)
+    logsuc.title("Success")
+    logsuc.geometry("300x100+810+500")
+    Label(logsuc, text="Login Sucess").pack()
+    Button(logsuc, text="OK", command=deletelogsuc).pack()
+
+
+def pnr():
+    global pnr
+    pnr = Toplevel(main)
+    pnr.title("Wrong")
+    pnr.geometry("300x100+810+500")
+    Label(pnr, text="Wrong Student Number or Password").pack()
+    Button(pnr, text="OK", command=deletepnr).pack()
+
+
+def unf():
+    global unf
+    unf = Toplevel(main)
+    unf.title("Wrong")
+    unf.geometry("300x100+810+500")
+    Label(unf, text="Wrong Student Number or Password").pack()
+    Button(unf, text="OK", command=deleteunf).pack()
 
 def log_back():
 
@@ -54,6 +96,17 @@ def delt_back():
 
     delt.destroy()
     main.deiconify()
+
+def deletelogsuc():
+    logsuc.destroy()
+
+
+def deletepnr():
+    pnr.destroy()
+
+
+def deleteunf():
+    unf.destroy()
 
 def main_scrn(): # Main Screen
 
@@ -85,11 +138,14 @@ def main_scrn(): # Main Screen
 
 def log_scrn(): # Login Screen
 
-    global log, StudentNum, password
+    global log, StdNum_verify, password_verify, StdNum_entry1, password_entry1
     log = Toplevel(main)
     log.geometry("600x500+650+275")
     log.title("Login Account")
     log.configure(bg="#DED0B6")
+
+    StdNum_verify = StringVar()
+    password_verify = StringVar()
 
     lbl = Label(log, text="Login Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
     lbl.place(x=116, y=20)
@@ -97,18 +153,16 @@ def log_scrn(): # Login Screen
     lbl = Label(log, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=220, y=140)
 
-    StudentNum = StringVar()
-    txtfld = Entry(log, textvariable=StudentNum, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
-    txtfld.place(x=195, y=190)
+    StdNum_entry1 = Entry(log, textvariable=StdNum_verify, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 15))
+    StdNum_entry1.place(x=195, y=190)
 
     lbl = Label(log, text="Enter password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
     lbl.place(x=240, y=270)
 
-    password = StringVar()
-    txtfld_password = Entry(log, textvariable=password, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
-    txtfld_password.place(x=197, y=320)
+    password_entry1 = Entry(log, textvariable=password_verify, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Times", 16), show="*")
+    password_entry1.place(x=197, y=320)
 
-    btn = Button(log, text="       Log In       ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command = Check) # calling the def_Check
+    btn = Button(log, text="       Log In       ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command = login_verify) # calling the def_Check
     btn.place(x=130, y=400)
 
     btn = Button(log, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), comman = log_back) # calling  log_back and returning on main screen
@@ -120,13 +174,12 @@ def log_scrn(): # Login Screen
 
 def cre_scrn(): # Create Screen
 
-    global cre
+    global cre, StdNum, password, Email, Age, Test1, Test2, StdNum_entry, password_entry, Email_entry, Age_entry, Test1_entry, Test2_entry
     cre = Toplevel(main)
     cre.geometry("900x700+490+200")
     cre.title("Create Account")
     cre.configure(bg="#DED0B6")
 
-    global StdNum, password, Email, Age, Test1, Test2, StdNum_entry, password_entry, Email_entry, Age_entry, Test1_entry, Test2_entry
     StdNum = StringVar()
     password = StringVar()
     Email = StringVar()
