@@ -115,6 +115,7 @@ def cre_scrn(): # Create Screen
     btn.place(x=260, y=540)
 
     btn = Button(cre, text="            Back            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
+    btn.place(x=470, y=540)
 
     cre.resizable(False, False)
     main.withdraw()
@@ -145,7 +146,7 @@ def upd_scrn():  # Update Screen
     btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
     btn.place(x=130, y=400)
 
-    btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold")) 
+    btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
     btn.place(x=330, y=400)
 
     upd.resizable(False, False)
@@ -159,7 +160,7 @@ def delt_scrn(): # Delete Screen
     delt.title("Login Account")
     delt.configure(bg="#DED0B6")
 
-    lbl = Label(delt, text="Update Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
+    lbl = Label(delt, text="Delete Account", fg="#454545", bg="#DED0B6", height=1, width=12, font=("Times", 40, "bold"))
     lbl.place(x=116, y=20)
 
     lbl = Label(delt, text="Enter Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
