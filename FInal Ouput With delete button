@@ -39,7 +39,21 @@ def login_verify():
         if password1 == passwrd[passwd_index]:
             logsuc()
         else:
-            pnr()
+            unf()
+    except ValueError:
+        unf()
+
+def update_verify():
+
+    user_pass = list(zip(user, passwrd))
+    StdNum1 = StdNum_verify.get()
+    password1 = password_verify.get()
+    try:
+        passwd_index = user_pass.index((StdNum1, password1))
+        if password1 == passwrd[passwd_index]:
+            logsuc()
+        else:
+            unf()
     except ValueError:
         unf()
 
@@ -51,14 +65,6 @@ def logsuc():
     Label(logsuc, text="Login Sucess").pack()
     Button(logsuc, text="OK", command=deletelogsuc).pack()
 
-def pnr():
-    global pnr
-    pnr = Toplevel(main)
-    pnr.title("Wrong")
-    pnr.geometry("300x100+810+500")
-    Label(pnr, text="Wrong Student Number or Password").pack()
-    Button(pnr, text="OK", command=deletepnr).pack()
-
 def unf():
     global unf
     unf = Toplevel(main)
@@ -66,6 +72,55 @@ def unf():
     unf.geometry("300x100+810+500")
     Label(unf, text="Wrong Student Number or Password").pack()
     Button(unf, text="OK", command=deleteunf).pack()
+
+def del_user():
+    # Function to delete user account
+    StdNum_info = txtfld.get()
+    password_info = txtfld_password.get()
+
+    try:
+        user_index = user.index(StdNum_info)
+        if passwrd[user_index] == password_info:
+            del user[user_index]
+            del passwrd[user_index]
+            del email[user_index]
+            del age[user_index]
+            del test1[user_index]
+            del test2[user_index]
+            delt_success()
+        else:
+            delt_failure()
+    except ValueError:
+        delt_failure()
+
+def delt_success():
+    # Function to show success message after deleting account
+    global delt_success
+    delt_success = Toplevel(main)
+    delt_success.title("Success")
+    delt_success.geometry("300x100+810+500")
+    Label(delt_success, text="Account Deleted Successfully").pack()
+    Button(delt_success, text="OK", command=delete_delt_success).pack()
+
+def delt_failure():
+    # Function to show failure message when deletion fails
+    global delt_failure
+    delt_failure = Toplevel(main)
+    delt_failure.title("Error")
+    delt_failure.geometry("300x100+810+500")
+    Label(delt_failure, text="Failed to delete account").pack()
+    Button(delt_failure, text="OK", command=delete_delt_failure).pack()
+
+def delete_delt_success():
+    delt_success.destroy()
+    delt_back()
+
+def delete_delt_failure():
+    delt_failure.destroy()
+
+def delt_back():
+    delt.destroy()
+    main.deiconify()
 
 def log_back():
 
@@ -89,10 +144,6 @@ def delt_back():
 
 def deletelogsuc():
     logsuc.destroy()
-
-
-def deletepnr():
-    pnr.destroy()
 
 
 def deleteunf():
@@ -257,54 +308,6 @@ def upd_scrn():  # Update Screen
     upd.resizable(False, False)
     main.withdraw()
 
-def delt_success():
-    # Function to show success message after deleting account
-    global delt_success
-    delt_success = Toplevel(main)
-    delt_success.title("Success")
-    delt_success.geometry("300x100+810+500")
-    Label(delt_success, text="Account Deleted Successfully").pack()
-    Button(delt_success, text="OK", command=delete_delt_success).pack()
-
-def delt_failure():
-    # Function to show failure message when deletion fails
-    global delt_failure
-    delt_failure = Toplevel(main)
-    delt_failure.title("Error")
-    delt_failure.geometry("300x100+810+500")
-    Label(delt_failure, text="Failed to delete account").pack()
-    Button(delt_failure, text="OK", command=delete_delt_failure).pack()
-
-def delete_delt_success():
-    delt_success.destroy()
-    delt_back()
-
-def delete_delt_failure():
-    delt_failure.destroy()
-
-def delt_back():
-    delt.destroy()
-    main.deiconify()
-
-def del_user():
-    # Function to delete user account
-    StdNum_info = txtfld.get()
-    password_info = txtfld_password.get()
-
-    try:
-        user_index = user.index(StdNum_info)
-        if passwrd[user_index] == password_info:
-            del user[user_index]
-            del passwrd[user_index]
-            del email[user_index]
-            del age[user_index]
-            del test1[user_index]
-            del test2[user_index]
-            delt_success()
-        else:
-            delt_failure()
-    except ValueError:
-        delt_failure()
 
 def delt_success():
     # Function to show success message after deleting account
@@ -335,25 +338,7 @@ def delt_back():
     delt.destroy()
     main.deiconify()
 
-def del_user():
-    # Function to delete user account
-    StdNum_info = txtfld.get()
-    password_info = txtfld_password.get()
 
-    try:
-        user_index = user.index(StdNum_info)
-        if passwrd[user_index] == password_info:
-            del user[user_index]
-            del passwrd[user_index]
-            del email[user_index]
-            del age[user_index]
-            del test1[user_index]
-            del test2[user_index]
-            delt_success()
-        else:
-            delt_failure()
-    except ValueError:
-        delt_failure()
 
 def delt_scrn():
     # Delete Screen
