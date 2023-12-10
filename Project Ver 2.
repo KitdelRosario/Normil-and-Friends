@@ -148,12 +148,17 @@ def admin_back():
     admin_window.destroy()
     main.deiconify()
 
+def edit_account_back():
+    edit_account.destroy()
+    main.deiconify()
+
 def deletelogsuc():
     logsuc.destroy()
-
+    main.deiconify()
+    
 def deleteunf():
     unf.destroy()
-
+    main.deiconify()
 
 def view_registered_accounts():
 
@@ -199,6 +204,62 @@ def display_account(StdNum_info, password_info, Email_info, Age_info, Test1_info
     btn.place(x=240, y=450)
 
     logsuc.resizable(False, False)
+    main.withdraw()
+
+def edit_account():
+
+    global edit_account
+    edit_account = Toplevel(main)
+    edit_account.geometry("900x700+490+200")
+    edit_account.title("Create Account")
+    edit_account.configure(bg="#DED0B6")
+
+    lbl = Label(edit_account, text="Create an Account", fg="#454545", bg="#DED0B6", height=1, width=15, font=("Times", 50, "bold"))
+    lbl.place(x=160, y=20)
+
+    lbl = Label(edit_account, text="Student Number:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=160)
+
+    txtfld = Entry(edit_account, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=80, y=200)
+
+    lbl = Label(edit_account, text="Create Password:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=280)
+
+    txtfld = Entry(edit_account, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20), show="*")
+    txtfld.place(x=80, y=320)
+
+    lbl = Label(edit_account, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=80, y=400)
+
+    txtfld = Entry(edit_account, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=80, y=440)
+
+    lbl = Label(edit_account, text="E-Mail:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=160)
+
+    txtfld = Entry(edit_account, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=500, y=200)
+
+    lbl = Label(edit_account, text="Age:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=280)
+
+    Age_entry = Entry(edit_account, textvariable=Age, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    Age_entry.place(x=500, y=320)
+
+    lbl = Label(edit_account, text="Test:", fg="#454545", bg="#DED0B6", font=("Times", 13, "bold"))
+    lbl.place(x=500, y=400)
+
+    txtfld = Entry(edit_account, textvariable=Test2, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
+    txtfld.place(x=500, y=440)
+
+    btn = Button(edit_account, text="            Edit            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"))
+    btn.place(x=260, y=540)
+
+    btn = Button(edit_account, text="            Back            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command=edit_account_back)  # calling  edit_account_back and returning on main screen
+    btn.place(x=470, y=540)
+
+    edit_account.resizable(False, False)
     main.withdraw()
 
 def main_scrn():  # Main Screen
@@ -258,8 +319,7 @@ def log_scrn():  # Login Screen
                  command=login_verify)  # calling the def_Check
     btn.place(x=130, y=400)
 
-    btn = Button(log, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),
-                 command=log_back)  # calling  log_back and returning on main screen
+    btn = Button(log, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command=log_back)  # calling  log_back and returning on main screen
     btn.place(x=330, y=400)
 
     log.resizable(False, False)
