@@ -256,9 +256,9 @@ def del_user():
             del city[user_index]
             delt_success()
         else:
-            delt_failure()
+            delt_failure_wiindow()
     except ValueError:
-        delt_failure()
+        delt_failure_wiindow()
 
 
 def delt_success():
@@ -271,7 +271,7 @@ def delt_success():
     Button(delt_success, text="OK", command=delete_delt_successs).pack()
 
 
-def delt_failure():
+def delt_failure_wiindow():
     # Function to show failure message when deletion fails
     global delt_failure
     delt_failure = Toplevel(main)
