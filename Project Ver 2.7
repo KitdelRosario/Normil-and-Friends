@@ -1,6 +1,5 @@
 from tkinter import *
 
-
 user = []
 passwrd = []
 email = []
@@ -8,13 +7,11 @@ age = []
 test1 = []
 test2 = []
 
-
 admin_username = "admin"
 admin_password = "admin"
 
 
 def view_registered_accounts():
-
     global admin_window
     admin_window = Toplevel(main)
     admin_window.geometry("1000x500+500+275")
@@ -41,7 +38,6 @@ def view_registered_accounts():
 
 
 def login_verify():
-
     user_pass = list(zip(user, passwrd))
     StdNum1 = StdNum_verify.get()
     password1 = password_verify.get()
@@ -60,7 +56,6 @@ def login_verify():
 
 
 def logsuc():
-
     global logsuc
     logsuc = Toplevel(main)
     logsuc.title("Success")
@@ -70,7 +65,6 @@ def logsuc():
 
 
 def unf():
-
     global unf
     unf = Toplevel(main)
     unf.title("Wrong")
@@ -80,7 +74,6 @@ def unf():
 
 
 def display_account(StdNum_info, password_info, Email_info, Age_info, Test1_info, Test2_info):
-
     global logsuc
     logsuc = Toplevel(main)
     logsuc.geometry("600x500+650+275")
@@ -108,7 +101,6 @@ def display_account(StdNum_info, password_info, Email_info, Age_info, Test1_info
 
 
 def reg_user():
-
     print("Registration Complete...")
 
     StdNum_info = StdNum.get()
@@ -131,8 +123,7 @@ def reg_user():
     cre.after(1000, cre_upd)
 
 
-def edit_account():
-
+def edit_acc():
     global edit_account, upd_use, upd_pswrd, upd_email, upd_age, upd_test1, upd_test2
     edit_account = Toplevel(main)
     edit_account.geometry("900x700+490+200")
@@ -187,10 +178,13 @@ def edit_account():
     txtfld = Entry(edit_account, textvariable=upd_test2, fg="#454545", bg="#F0E9D2", bd=3.5, font=("Helvetica", 20))
     txtfld.place(x=500, y=440)
 
-    btn = Button(edit_account, text="            Update            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command=upd_user)
+    btn = Button(edit_account, text="            Update            ", fg="#F4BF96", bg="#454545", bd=3.5,
+                 font=("Times", 13, "bold"), command=upd_user)
     btn.place(x=260, y=540)
 
-    btn = Button(edit_account, text="            Back            ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"), command=edit_account_back)  # calling  edit_account_back and returning on main screen
+    btn = Button(edit_account, text="            Back            ", fg="#F4BF96", bg="#454545", bd=3.5,
+                 font=("Times", 13, "bold"),
+                 command=edit_account_back)  # calling  edit_account_back and returning on main screen
     btn.place(x=470, y=540)
 
     edit_account.resizable(False, False)
@@ -198,7 +192,7 @@ def edit_account():
 
 
 def upd_user():
-
+    upd_index = user.index(upd1)
     StdNum_info = upd_use.get()
     password_info = upd_pswrd.get()
     Email_info = upd_email.get()
@@ -226,16 +220,16 @@ def upd_user():
 
 
 def update_verify():
-    global upd_index
+    global upd1
 
     user_pass = list(zip(user, passwrd))
     upd1 = upd_StdNum.get()
     upd2 = upd_password.get()
-    upd_index = user.index(upd1)
+
     try:
         passwd_index = user_pass.index((upd1, upd2))
         if upd2 == passwrd[passwd_index]:
-            edit_account()
+            edit_acc()
         else:
             unf()
     except ValueError:
@@ -263,8 +257,8 @@ def del_user():
             delt_failure()
     except ValueError:
         delt_failure()
-        
-        
+
+
 def delt_success():
     # Function to show success message after deleting account
     global delt_success
@@ -283,49 +277,60 @@ def delt_failure():
     delt_failure.geometry("300x100+810+500")
     Label(delt_failure, text="No Account Found").pack()
     Button(delt_failure, text="OK", command=delete_delt_failure).pack()
-    
-    
+
+
 def admin_back():
     admin_window.destroy()
     main.deiconify()
-    
+
+
 def log_back():
     log.destroy()
     main.deiconify()
-    
+
+
 def cre_back():
     cre.destroy()
     main.deiconify()
-    
+
+
 def upd_back():
     upd.destroy()
     main.deiconify()
-    
+
+
 def delt_back():
     delt.destroy()
     main.deiconify()
-def edit_upd():
 
+
+def edit_upd():
     edit_account.destroy()
     main.deiconify()
-    
+
+
 def edit_account_back():
     edit_account.destroy()
-    
+
+
 def cre_upd():
     cre.destroy()
     main.deiconify()
+
 
 def delete_delt_success():
     delt_success.destroy()
     delt_back()
 
+
 def delete_delt_failure():
     delt_failure.destroy()
+
 
 def deletelogsuc():
     logsuc.destroy()
     main.deiconify()
+
 
 def deleteunf():
     unf.destroy()
@@ -501,7 +506,8 @@ def upd_scrn():  # Update Screen
                             show="*")
     txtfld_password.place(x=197, y=320)
 
-    btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),command=update_verify)
+    btn = Button(upd, text="         Edit         ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),
+                 command=update_verify)
     btn.place(x=130, y=400)
 
     btn = Button(upd, text="         Back          ", fg="#F4BF96", bg="#454545", bd=3.5, font=("Times", 13, "bold"),
